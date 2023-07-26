@@ -40,4 +40,4 @@ jobs:
           node-version: 18
       - run: yarn install
       - run: yarn db:generate
-      - run: nx affected --target=test --parallel=3
+      - run: npx nx affected --target=test --parallel=3
