@@ -5,8 +5,10 @@ import { NextResponse } from 'next/server';
 
 interface NewEvent {
   name: string;
+  description?: string;
   type: Prisma.EventType;
   startAt: Date;
+  endAt?: Date;
 }
 
 export async function POST(req: Request) {

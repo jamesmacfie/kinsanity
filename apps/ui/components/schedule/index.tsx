@@ -1,6 +1,6 @@
 import Prisma from '@db';
 import { groupBy } from 'lodash';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import Heading from '@ui/components/heading';
 import ScheduleEvent from './event';
 
@@ -11,17 +11,22 @@ interface Props {
 const Schedule = ({ events }: Props) => {
   const eventsByDay = groupBy(events, (event) => {
     const startDate = new Date(event.startAt);
-    const formattedStartDate = format(startDate, 'yyyy-MM-dd');
+    const formattedStartDate = format(startDate, 'yyyyMMdd');
     return formattedStartDate;
+  });
+  const orderedEventsDays = Object.keys(eventsByDay).sort((a, b) => {
+    return new Date(a) > new Date(b) ? 1 : -1;
   });
 
   return (
     <>
-      {Object.entries(eventsByDay).map(([date, events]) => {
+      {orderedEventsDays.map((date) => {
+        const events = eventsByDay[date];
+        const usableDate = parse(date, 'yyyyMMdd', new Date());
         return (
           <div key={date} className="mb-4 w-96 div">
             <Heading tag="h2" className="mb-2">
-              {format(new Date(date), 'eee d')}
+              {format(usableDate, 'eee d')}
             </Heading>
 
             {events.map((event) => {

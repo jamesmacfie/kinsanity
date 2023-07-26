@@ -83,7 +83,10 @@ const ScheduleEvent = ({ event }: Props) => {
       <div
         className={`absolute top-0 bottom-0 left-0 right-0 z-20 rounded-lg opacity-50 bg-gradient-to-br ${colour.bgFrom} ${colour.bgTo}`}
       />
-      <div className="relative z-30 flex p-4 rounded-lg">
+      <div
+        className={`absolute top-0 bottom-0 left-0 right-0 z-30 rounded-lg opacity-50 bg-slate-900`}
+      />
+      <div className="relative z-40 flex p-4 rounded-lg">
         <div
           className={`w-8 h-8 rounded-md flex items-center justify-center text-xl ${colour.icon}`}
         >
