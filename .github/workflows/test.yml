@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 45
     runs-on: ubuntu-latest
     env:
-      POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test?schema=public
 
     services:
       postgres:
