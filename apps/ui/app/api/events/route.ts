@@ -28,6 +28,15 @@ export async function POST(req: Request) {
       },
     });
 
+    await fetch(process.env.EVENT_REFRESH_DISPLAY_URL as string, {
+      method: 'POST',
+      body: JSON.stringify({
+        event_id: event.id,
+        name: event.name,
+        description: event.description,
+      }),
+    });
+
     return NextResponse.json({
       event,
     });
