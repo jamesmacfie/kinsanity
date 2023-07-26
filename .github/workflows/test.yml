@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Test
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    env:
+      POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test?schema=public
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run db:generate
+      - run: npm run affected:test
