@@ -1,19 +1,13 @@
 import { prisma } from '@db';
 import { Session, getServerSession } from 'next-auth';
 import { authOptions } from '@ui/lib/auth';
-import Content from '@ui/components/content';
 
 import Heading from '@ui/components/heading';
 import AddEventButton from './components/addEventButton';
-import EventsList from './components/eventsList';
+// import EventsList from './components/eventsList';
 import NoEvents from './components/noEvents';
-import Today from './components/today';
+// import Today from './components/today';
 import Schedule from '@ui/components/schedule';
-
-interface Props {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
 
 async function getData() {
   const session = (await getServerSession(authOptions)) as Session;
@@ -30,7 +24,7 @@ async function getData() {
   return { events: events.map((eu) => eu.event) };
 }
 
-export default async function F({ params, searchParams }: Props) {
+export default async function F() {
   const { events } = await getData();
 
   return (
