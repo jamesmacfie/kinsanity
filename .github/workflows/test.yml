@@ -38,6 +38,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run db:generate
-      - run: npm run affected:test
+      - run: yarn install
+      - run: yarn db:generate
+      - run: nx affected --target=test --parallel=3
