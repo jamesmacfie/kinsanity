@@ -3,7 +3,7 @@
 import Button from '@ui/components/button';
 import Input from '@ui/components/input';
 import Modal from '@ui/components/modal';
-import Select from '@ui/components/select';
+import Select from '@ui/components/textarea copy';
 import Textarea from '@ui/components/textarea';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';

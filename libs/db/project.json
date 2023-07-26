@@ -5,17 +5,9 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "nx:run-commands",
       "options": {
-        "outputPath": "dist/libs/db",
-        "main": "libs/db/src/index.ts",
-        "tsConfig": "libs/db/tsconfig.lib.json",
-        "assets": [
-          "libs/db/*.md"
-        ]
+        "command": "prisma generate"
       }
     },
     "seed": {
