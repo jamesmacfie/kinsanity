@@ -6,6 +6,8 @@ on:
       - main
 
 jobs:
+  test:
+    uses: ./.github/test.yml
   migrate_db:
     name: DB Migration
 
