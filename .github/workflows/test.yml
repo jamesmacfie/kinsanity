@@ -1,11 +1,9 @@
 name: Test
 
 on:
+  workflow_call:
   pull_request:
   merge_group:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
