@@ -7,9 +7,12 @@ on:
 
 jobs:
   test:
+    name: 'Test'
     uses: ./.github/workflows/test.yml
   migrate_db:
-    name: DB Migration
+    name: Production Database Migration
+    needs:
+      - test
 
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
