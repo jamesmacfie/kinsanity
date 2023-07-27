@@ -7,6 +7,7 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "avatarUrl" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -17,10 +18,12 @@ CREATE TABLE "users" (
 CREATE TABLE "events" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "description" TEXT,
     "start_at" TIMESTAMP(3) NOT NULL,
     "end_at" TIMESTAMP(3),
     "type" "EventType" NOT NULL,
     "recurring" JSONB,
+    "display" JSONB,
     "created_by_user_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
