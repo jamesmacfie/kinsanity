@@ -71,6 +71,12 @@
           "apps/ui/**/*.{ts,tsx,js,jsx}"
         ]
       }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash apps/ui/scripts/deploy.sh"
+      }
     }
   },
   "tags": []

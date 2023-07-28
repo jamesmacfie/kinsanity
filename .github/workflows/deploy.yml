@@ -31,3 +31,25 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile
       - run: npx prisma migrate deploy
+
+  deploy:
+    name: Production Deploy
+    needs:
+      - migrate_db
+
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: npx nx affected --target=build --configuration=production
