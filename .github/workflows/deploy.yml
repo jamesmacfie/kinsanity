@@ -52,4 +52,4 @@ jobs:
           node-version: 18
           cache: yarn
       - run: yarn install --frozen-lockfile
-      - run: npx nx affected --target=build --configuration=production
+      - run: npx nx affected --target=deploy --configuration=production
