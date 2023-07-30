@@ -1,12 +1,6 @@
-import { Kafka } from '@upstash/kafka';
+import { kafka } from '@kafka';
 
 try {
-  const kafka = new Kafka({
-    url: process.env.UPSTASH_KAFKA_REST_URL,
-    username: process.env.UPSTASH_KAFKA_USERNAME,
-    password: process.env.UPSTASH_KAFKA_PASSWORD,
-  });
-
   const run = async () => {
     const c = kafka.consumer();
     const messages = await c.consume({

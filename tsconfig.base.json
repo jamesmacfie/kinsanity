@@ -10,14 +10,27 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@db": ["libs/db/src/index.ts"],
-      "@ui/*": ["apps/ui/*"]
+      "@db": [
+        "libs/db/src/index.ts"
+      ],
+      "@kafka": [
+        "libs/kafka/src/index.ts"
+      ],
+      "@ui/*": [
+        "apps/ui/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
