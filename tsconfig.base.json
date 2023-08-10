@@ -24,6 +24,12 @@
       "@kafka": [
         "libs/kafka/src/index.ts"
       ],
+      "@openAI": [
+        "libs/open-ai/src/index.ts"
+      ],
+      "@stableDiffusionImage": [
+        "libs/stable-diffusion-image/src/index.ts"
+      ],
       "@ui/*": [
         "apps/ui/*"
       ]

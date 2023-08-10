@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Prisma from '@db';
+import { Popover } from 'react-tiny-popover';
+import EventMenu from './menu';
 
 interface Props {
   event: Prisma.Events;
@@ -72,13 +74,14 @@ const ScheduleEvent = ({ event }: Props) => {
     ? colours[display.colour as (typeof acceptedColours)[number]]
     : colours[defaultColour];
   const icon = display?.icon ? display?.icon : defaultIcon;
+  const image = display?.image;
   return (
     <div
-      className={`mt-2 relative w-full rounded-lg ${colour.bg} ${colour.text}`}
+      className={`overflow-hidden mt-2 relative w-full rounded-lg ${colour.bg} ${colour.text}`}
     >
       <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-cover rounded-lg"
-        style={{ backgroundImage: `url(test.jpg)` }}
+        className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-cover rounded-lg blur-sm"
+        style={{ backgroundImage: image ? `url(${image})` : undefined }}
       />
       <div
         className={`absolute top-0 bottom-0 left-0 right-0 z-20 rounded-lg opacity-50 bg-gradient-to-br ${colour.bgFrom} ${colour.bgTo}`}
@@ -93,7 +96,15 @@ const ScheduleEvent = ({ event }: Props) => {
           {icon}
         </div>
         <div className="flex-grow ml-4">
-          <h4 className="self-center flex-grow">{event.name}</h4>
+          <div className="flex">
+            <h4 className="self-center flex-grow whitespace-nowrap">
+              {event.name}
+            </h4>
+            <div>
+              <EventMenu />
+            </div>
+          </div>
+
           <p className="mt-2 text-sm text-slate-400">
             This is where a description or time might go
           </p>

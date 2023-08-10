@@ -1,7 +1,7 @@
 import { prisma } from '@db';
 import { Session, getServerSession } from 'next-auth';
 import { authOptions } from '@ui/lib/auth';
-
+import { wrapper } from '@ui/store/store';
 import Heading from '@ui/components/heading';
 import AddEventButton from './components/addEventButton';
 // import EventsList from './components/eventsList';
@@ -24,7 +24,7 @@ async function getData() {
   return { events: events.map((eu) => eu.event) };
 }
 
-export default async function F() {
+const F = async () => {
   const { events } = await getData();
 
   return (
@@ -38,4 +38,6 @@ export default async function F() {
       {events.length ? <Schedule events={events} /> : <NoEvents />}
     </>
   );
-}
+};
+
+export default F;

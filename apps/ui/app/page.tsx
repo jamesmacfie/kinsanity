@@ -1,15 +1,21 @@
-import { prisma } from '@db';
 import Header from '@ui/components/header';
 
 import Content from '@ui/components/content';
+import { Session, getServerSession } from 'next-auth';
+import { authOptions } from '@ui/lib/auth';
+import { redirect } from 'next/navigation';
 
 async function getData() {
-  const users = await prisma.users.findMany();
-  return { users };
+  const session = (await getServerSession(authOptions)) as Session;
+  return { session };
 }
 
 export default async function Index() {
-  const x = await getData();
+  const { session } = await getData();
+  if (session) {
+    redirect('/f/');
+  }
+
   return (
     <div>
       <Header showAuthButtons />
